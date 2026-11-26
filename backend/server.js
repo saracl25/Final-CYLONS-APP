@@ -23,7 +23,13 @@ const { validarNuevaAlerta, idRutaValido } = require('./validaciones');
 const app = express();
 db.inicializar();
 
-app.use(cors({ origin: ['http://localhost:4200', 'http://127.0.0.1:4200'] }));
+app.use(cors({
+  origin: [
+    'http://localhost:4200',
+    'http://127.0.0.1:4200',
+    'https://saracl25.github.io'
+  ]
+}));
 app.use(express.json({ limit: '10kb' }));
 
 // ------------------------------- Consultas (GET) -------------------------------
