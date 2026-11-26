@@ -1,0 +1,31 @@
+<header class="barra">
+  <!-- Marca -->
+  <div class="marca">
+    <span class="logo">CYL<span class="o" aria-hidden="true"></span>NS</span>
+    <span class="sub">Grupo JOVIAL</span>
+  </div>
+
+  <!-- Indicadores del dispositivo -->
+  <div class="indicadores">
+    <span class="indicador" title="Señal GPS simulada">
+      <span class="punto-gps" aria-hidden="true"></span>
+      GPS ±{{ precisionGps() }} m
+    </span>
+
+    <span class="indicador" title="Batería simulada">
+      <span class="cuerpo-bateria" aria-hidden="true">
+        <i [style.width.%]="bateria()" [class.baja-bateria]="bateria() <= 20"></i>
+      </span>
+      {{ bateria() }}%
+    </span>
+
+    <span class="indicador tts" [class.tts-on]="vozActiva()" title="Guía por voz">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M11 5L6 9H3v6h3l5 4V5z"/>
+        <path d="M15.5 9.5a4 4 0 010 5"/>
+      </svg>
+      TTS {{ vozActiva() ? 'ACTIVADO' : 'EN ESPERA' }}
+    </span>
+  </div>
+</header>

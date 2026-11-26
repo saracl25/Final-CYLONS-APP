@@ -1,0 +1,97 @@
+<section class="card pagina" aria-labelledby="titulo-reportar">
+  <header class="titulo-pagina">
+    <h1 id="titulo-reportar">Reportar obstáculo</h1>
+  </header>
+
+  <!-- ÉXITO: el servidor respondió 201 y la alerta quedó guardada -->
+  @if (estado() === 'exito' && alertaCreada(); as alerta) {
+    <div class="exito" role="status">
+      <h2>Obstáculo reportado</h2>
+      <p>
+        Se guardó en el servidor con el código <strong class="mono">{{ alerta.id }}</strong>:
+        {{ alerta.tipoAlerta }} a {{ alerta.distanciaMetros }} metros, severidad {{ alerta.severidad }}.
+        Seguirá disponible aunque recargues la página.
+      </p>
+      <div class="acciones">
+        <button type="button" class="btn btn-secundario" (click)="reportarOtro()">Reportar otro</button>
+        <a routerLink="/alertas" class="btn btn-primario">Ver alertas</a>
+      </div>
+    </div>
+  }
+
+  <!-- FORMULARIO -->
+  @else {
+    <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+
+      <div class="campo">
+        <label for="tipoAlerta">Tipo de obstáculo</label>
+        <select id="tipoAlerta" formControlName="tipoAlerta"
+                [attr.aria-invalid]="mensajeError('tipoAlerta') ? true : null"
+                [attr.aria-describedby]="mensajeError('tipoAlerta') ? 'err-tipoAlerta' : null">
+          <option value="">Selecciona una opción…</option>
+          @for (t of tipos; track t.valor) {
+            <option [value]="t.valor">{{ t.etiqueta }}</option>
+          }
+        </select>
+        @if (mensajeError('tipoAlerta'); as msg) {
+          <p class="error" id="err-tipoAlerta">{{ msg }}</p>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="distanciaMetros">Distancia al obstáculo (metros)</label>
+        <input id="distanciaMetros" type="number" inputmode="numeric" formControlName="distanciaMetros"
+               [attr.min]="distanciaMin" [attr.max]="distanciaMax" placeholder="Ej. 25"
+               [attr.aria-invalid]="mensajeError('distanciaMetros') ? true : null"
+               [attr.aria-describedby]="mensajeError('distanciaMetros') ? 'err-distanciaMetros' : null">
+        @if (mensajeError('distanciaMetros'); as msg) {
+          <p class="error" id="err-distanciaMetros">{{ msg }}</p>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="severidad">Severidad</label>
+        <select id="severidad" formControlName="severidad"
+                [attr.aria-invalid]="mensajeError('severidad') ? true : null"
+                [attr.aria-describedby]="mensajeError('severidad') ? 'err-severidad' : null">
+          <option value="">Selecciona una opción…</option>
+          @for (s of severidades; track s.valor) {
+            <option [value]="s.valor">{{ s.etiqueta }}</option>
+          }
+        </select>
+        @if (mensajeError('severidad'); as msg) {
+          <p class="error" id="err-severidad">{{ msg }}</p>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="ubicacion">Ubicación <span class="opcional">(opcional)</span></label>
+        <input id="ubicacion" type="text" formControlName="ubicacion"
+               placeholder="Ej. Carrera 43A con Calle 10"
+               [attr.aria-invalid]="mensajeError('ubicacion') ? true : null"
+               [attr.aria-describedby]="mensajeError('ubicacion') ? 'err-ubicacion' : null">
+        @if (mensajeError('ubicacion'); as msg) {
+          <p class="error" id="err-ubicacion">{{ msg }}</p>
+        }
+      </div>
+
+      <!-- ERROR general: servidor apagado, datos rechazados, etc. -->
+      @if (estado() === 'error' && errorGeneral(); as mensaje) {
+        <div class="aviso-error" role="alert">{{ mensaje }}</div>
+      }
+
+      <div class="acciones">
+        <button type="submit" class="btn btn-primario"
+                [disabled]="estado() === 'enviando'"
+                [attr.aria-busy]="estado() === 'enviando'">
+          @if (estado() === 'enviando') {
+            <span class="spinner-mini" aria-hidden="true"></span> Enviando…
+          } @else {
+            Enviar reporte
+          }
+        </button>
+        <a routerLink="/" class="btn btn-secundario">Cancelar</a>
+      </div>
+    </form>
+  }
+</section>

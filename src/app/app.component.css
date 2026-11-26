@@ -1,0 +1,21 @@
+/* ---------- Distribución general ---------- */
+.contenedor {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  width: 100%;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  border-top: 1px solid var(--borde);
+  padding: 22px 16px 30px;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pie strong { color: var(--texto); letter-spacing: .1em; }
+.pie .mono { font-size: 11px; letter-spacing: .08em; }

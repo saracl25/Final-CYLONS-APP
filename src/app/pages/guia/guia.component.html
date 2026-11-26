@@ -1,0 +1,14 @@
+<div class="layout">
+  <!-- Panel principal de asistencia por voz / alertas -->
+  <app-voice-panel
+    [rutaActiva]="sesion.rutaActiva()"
+    [alertas]="cylons.alertas()"
+    [vozActiva]="sesion.vozActiva()"
+    (vozToggle)="sesion.alternarVoz($event)" />
+
+  <!-- Lista de rutas seguras (colección -> tarjetas individuales) -->
+  <app-route-list
+    [rutas]="cylons.rutas()"
+    [rutaActivaId]="sesion.rutaActiva()?.id ?? null"
+    (rutaSeleccionada)="sesion.iniciarRuta($event)" />
+</div>

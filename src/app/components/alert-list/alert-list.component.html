@@ -1,0 +1,47 @@
+@if (alertas().length === 0) {
+  <p class="vacio">No hay obstáculos reportados cerca. Camino despejado.</p>
+} @else {
+  <ul class="alertas">
+    @for (alerta of alertas(); track alerta.id) {
+      <li [class]="'alerta sev-' + alerta.severidad">
+        <span class="icono" aria-hidden="true">
+          @switch (alerta.tipoAlerta) {
+            @case ('peatón') {
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="4.5" r="2.5"/>
+                <path d="M12 7v6"/>
+                <path d="M12 13l-3.5 7"/>
+                <path d="M12 13l3.5 7"/>
+                <path d="M7.5 10.5L12 9l4.5 1.5"/>
+              </svg>
+            }
+            @case ('obra') {
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3L2 21h20L12 3z"/>
+                <path d="M12 10v5"/>
+                <path d="M12 17.5v.01"/>
+              </svg>
+            }
+            @case ('escalón') {
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20h4v-4h4v-4h4V8h4"/>
+              </svg>
+            }
+          }
+        </span>
+
+        <div class="detalle">
+          <p class="tipo">{{ alerta.tipoAlerta }} · a {{ alerta.distanciaMetros }} metros</p>
+          @if (alerta.ubicacion) {
+            <p class="ubicacion">{{ alerta.ubicacion }}</p>
+          }
+        </div>
+
+        <span class="nivel mono">{{ alerta.severidad }}</span>
+      </li>
+    }
+  </ul>
+}

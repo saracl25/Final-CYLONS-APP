@@ -1,0 +1,14 @@
+.detalle {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.volver { color: var(--cian); font-weight: 700; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.volver:hover { text-decoration: underline; }
+.cabecera { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.cabecera h1 { font-size: 28px; margin: 0; line-height: 1.1; }
+.metricas { display: flex; gap: 16px; margin: 0; color: var(--cian); font-size: 15px; }
+.descripcion { margin: 0; color: var(--texto-suave); font-size: 16.5px; line-height: 1.5; }

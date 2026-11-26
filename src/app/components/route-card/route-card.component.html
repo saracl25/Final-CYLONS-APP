@@ -1,0 +1,35 @@
+<article class="tarjeta" [class.tarjeta-activa]="activa()">
+
+  <span class="icono" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+  </span>
+
+  <div class="info">
+    <h3>
+      <a class="enlace-titulo" [routerLink]="['/rutas', ruta().id]"
+         [attr.aria-label]="'Ver detalle de la ruta a ' + ruta().nombreDestino">{{ ruta().nombreDestino }}</a>
+    </h3>
+    <p class="meta mono">{{ ruta().distanciaKm | number:'1.1-1' }} km · {{ ruta().tiempoEstimado }} min</p>
+    @if (ruta().descripcion) {
+      <p class="descripcion">{{ ruta().descripcion }}</p>
+    }
+  </div>
+
+  <div class="lado">
+    <span [class]="'badge acc-' + ruta().nivelAccesibilidad">{{ etiquetaAccesibilidad() }}</span>
+
+    <!-- Interacción significativa: emite el evento output() hacia el padre -->
+    <button type="button" class="btn btn-primario btn-iniciar"
+            [disabled]="activa()"
+            (click)="iniciarGuia()">
+      @if (activa()) {
+        En curso
+      } @else {
+        Iniciar guía
+      }
+    </button>
+  </div>
+</article>

@@ -1,0 +1,16 @@
+# Dependencias y artefactos de compilación
+/node_modules
+/dist
+/.angular
+
+# Archivos del sistema
+.DS_Store
+npm-debug.log*
+
+# Entorno
+/.vscode
+/.idea
+
+# Persistencia local del back-end (se crea sola desde db.seed.json)
+/backend/data/db.json
+/backend/data/db.json.tmp

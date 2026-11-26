@@ -1,0 +1,23 @@
+.pagina {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; }
+.filtro {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--borde);
+  font-weight: 700;
+  color: var(--texto-suave);
+}
+.filtro:hover { background: var(--panel-2); color: var(--texto); }
+.filtro-activo {
+  color: var(--cian);
+  border-color: rgba(0, 229, 255, .6);
+  background: rgba(0, 229, 255, .08);
+}

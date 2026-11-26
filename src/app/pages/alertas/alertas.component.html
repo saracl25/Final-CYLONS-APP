@@ -1,0 +1,21 @@
+<section class="card pagina" aria-labelledby="titulo-alertas">
+  <header class="titulo-pagina">
+    <h1 id="titulo-alertas">Alertas</h1>
+    <span class="chip">{{ visibles().length }} de {{ cylons.alertas().length }}</span>
+  </header>
+
+  <div class="filtros" role="group" aria-label="Filtrar por severidad">
+    @for (f of filtros; track f.valor) {
+      <button type="button" class="filtro"
+              [class.filtro-activo]="filtro() === f.valor"
+              [attr.aria-pressed]="filtro() === f.valor"
+              (click)="filtro.set(f.valor)">
+        {{ f.etiqueta }}
+      </button>
+    }
+  </div>
+
+  <app-alert-list [alertas]="visibles()" />
+
+  <a routerLink="/reportar" class="btn btn-primario">Reportar un obstáculo</a>
+</section>

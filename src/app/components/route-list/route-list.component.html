@@ -1,0 +1,22 @@
+<section class="rutas" aria-labelledby="titulo-rutas">
+
+  <header class="cabecera">
+    <h2 id="titulo-rutas">Rutas seguras cercanas</h2>
+    <span class="chip">{{ rutas().length }} disponibles</span>
+  </header>
+
+  <!-- Estado vacío de la colección -->
+  @if (rutas().length === 0) {
+    <p class="vacio card">No hay rutas disponibles por el momento.</p>
+  } @else {
+    <!-- Colección -> componente individual: cada tarjeta recibe SU ruta -->
+    <div class="tarjetas">
+      @for (ruta of rutas(); track ruta.id) {
+        <app-route-card
+          [ruta]="ruta"
+          [activa]="ruta.id === rutaActivaId()"
+          (seleccionar)="rutaSeleccionada.emit($event)" />
+      }
+    </div>
+  }
+</section>

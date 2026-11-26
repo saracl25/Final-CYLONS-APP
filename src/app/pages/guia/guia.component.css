@@ -1,0 +1,16 @@
+.layout { display: grid; gap: 20px; }
+
+/* Pantalla amplia (computador): dos columnas, panel de voz fijo a la derecha */
+@media (min-width: 960px) {
+  .layout { grid-template-columns: minmax(0, 1fr) 400px; align-items: start; }
+  .layout app-voice-panel {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 16px;
+  }
+  .layout app-route-list {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

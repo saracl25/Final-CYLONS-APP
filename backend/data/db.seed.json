@@ -1,0 +1,71 @@
+{
+  "usuario": {
+    "nombre": "Daniela Sucerquia",
+    "nivelAsistencia": "Baja visión",
+    "ciudad": "Envigado, Antioquia"
+  },
+  "rutas": [
+    {
+      "id": "r-001",
+      "nombreDestino": "Casa",
+      "distanciaKm": 1.2,
+      "tiempoEstimado": 15,
+      "nivelAccesibilidad": "alta",
+      "descripcion": "Ruta frecuente por calles con aceras amplias y semáforos sonoros."
+    },
+    {
+      "id": "r-002",
+      "nombreDestino": "Universidad Lasallista",
+      "distanciaKm": 2.4,
+      "tiempoEstimado": 28,
+      "nivelAccesibilidad": "alta",
+      "descripcion": "Tramo verificado por la red de apoyo. Andenes en buen estado."
+    },
+    {
+      "id": "r-003",
+      "nombreDestino": "Fundación Aliada",
+      "distanciaKm": 3.1,
+      "tiempoEstimado": 36,
+      "nivelAccesibilidad": "media",
+      "descripcion": "Incluye un cruce sin semáforo sonoro en la Carrera 14."
+    },
+    {
+      "id": "r-004",
+      "nombreDestino": "Terminal de Transportes",
+      "distanciaKm": 4.5,
+      "tiempoEstimado": 52,
+      "nivelAccesibilidad": "baja",
+      "descripcion": "Tramo con obras viales activas. Se recomienda ir acompañada."
+    }
+  ],
+  "alertas": [
+    {
+      "id": "a-001",
+      "tipoAlerta": "peatón",
+      "distanciaMetros": 20,
+      "severidad": "media",
+      "ubicacion": "Calle 30 con Carrera 12 · flujo alto de peatones"
+    },
+    {
+      "id": "a-002",
+      "tipoAlerta": "obra",
+      "distanciaMetros": 85,
+      "severidad": "alta",
+      "ubicacion": "Carrera 14 #24-10 · andén cerrado"
+    },
+    {
+      "id": "a-003",
+      "tipoAlerta": "escalón",
+      "distanciaMetros": 45,
+      "severidad": "baja",
+      "ubicacion": "Andén del Parque de la Vida"
+    },
+    {
+      "id": "a-004",
+      "tipoAlerta": "peatón",
+      "distanciaMetros": 150,
+      "severidad": "baja",
+      "ubicacion": "Carrera 11 con Calle 25"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<section class="panel card" aria-live="polite">
+
+  <header class="cabecera">
+    <h2>Asistencia por voz</h2>
+    <span class="chip" [class.chip-apagada]="!vozActiva()">
+      {{ vozActiva() ? 'ACTIVADA' : 'EN ESPERA' }}
+    </span>
+  </header>
+
+  <!-- Estado 1: hay una ruta activa -->
+  @if (rutaActiva(); as ruta) {
+    <div class="ruta-activa">
+      <p class="destino">{{ ruta.nombreDestino }}</p>
+      <p class="metricas mono">
+        <span>{{ ruta.distanciaKm | number:'1.1-1' }} km</span>
+        <span>{{ ruta.tiempoEstimado }} min</span>
+      </p>
+
+      @if (vozActiva()) {
+        <!-- Instrucción paso a paso, sincronizada con la voz -->
+        <div class="instruccion">
+          <p class="paso mono">PASO {{ indiceInstruccion() + 1 }} DE {{ instrucciones().length }}</p>
+          <p class="texto">{{ instrucciones()[indiceInstruccion()] }}</p>
+          <div class="barra"><i [style.width.%]="progreso()"></i></div>
+        </div>
+      } @else {
+        <p class="aviso-apagada">
+          La guía por voz está en espera. Actívala para recibir indicaciones audibles paso a paso.
+        </p>
+      }
+    </div>
+  } @else {
+    <!-- Estado 2: sin ruta seleccionada -->
+    <div class="inactiva">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M11 5L6 9H3v6h3l5 4V5z"/>
+        <path d="M15.5 9.5a4 4 0 010 5"/>
+      </svg>
+      <p><strong>Selecciona una ruta segura</strong> para iniciar la guía por voz paso a paso.</p>
+    </div>
+  }
+
+  <!-- Acciones principales -->
+  <div class="acciones">
+    <button type="button" class="btn btn-primario"
+            [disabled]="!rutaActiva()"
+            (click)="alternarVoz()">
+      {{ vozActiva() ? 'Desactivar guía por voz' : 'Activar guía por voz' }}
+    </button>
+    <a routerLink="/reportar" class="btn btn-secundario">
+      Reportar obstáculo
+    </a>
+  </div>
+
+  <!-- Alertas / obstáculos del entorno -->
+  <h3 class="subtitulo">
+    Alertas cercanas
+    <span class="chip chip-apagada">{{ alertasOrdenadas().length }}</span>
+  </h3>
+
+  <app-alert-list [alertas]="alertasOrdenadas()" />
+</section>

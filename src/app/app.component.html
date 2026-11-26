@@ -1,0 +1,43 @@
+<app-status-bar [vozActiva]="sesion.vozActiva()" />
+<app-nav-bar />
+
+<main class="contenedor">
+
+  <!-- ESTADO 1 · Cargando (isLoading signal) -->
+  @if (cylons.isLoading()) {
+    <section class="estado card" role="status">
+      <span class="spinner" aria-hidden="true"></span>
+      <h2>Cargando rutas y alertas…</h2>
+      <p>Consultando al servidor de CYLONS.</p>
+    </section>
+  }
+
+  <!-- ESTADO 2 · Error (errorMessage signal) con acción de recuperación -->
+  @else if (cylons.errorMessage()) {
+    <section class="estado estado-error card" role="alert">
+      <span class="icono-error" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3L2 21h20L12 3z"/>
+          <path d="M12 10v5"/>
+          <path d="M12 17.5v.01"/>
+        </svg>
+      </span>
+      <h2>No pudimos cargar los datos</h2>
+      <p>{{ cylons.errorMessage() }}</p>
+      <button type="button" class="btn btn-primario" (click)="reintentar()">
+        Reintentar
+      </button>
+    </section>
+  }
+
+  <!-- ESTADO 3 · Contenido: la vista activa del router -->
+  @else {
+    <router-outlet />
+  }
+</main>
+
+<footer class="pie">
+  <p><strong>CYLONS</strong> · Asistencia de navegación para personas con discapacidad visual</p>
+  <p class="mono">Grupo JOVIAL · Entrega final · Angular + Node.js/Express</p>
+</footer>

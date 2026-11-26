@@ -1,0 +1,56 @@
+:host { display: block; }
+
+.alertas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alerta {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 15px;
+  border-radius: 13px;
+  border: 1px solid var(--borde);
+  background: var(--panel-2);
+  border-left-width: 4px;
+}
+
+/* Colores semánticos por severidad */
+.alerta.sev-baja  { border-left-color: var(--ok); }
+.alerta.sev-media { border-left-color: var(--alerta); }
+.alerta.sev-alta  { border-left-color: var(--peligro); }
+
+.alerta .icono {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: #191b20;
+  border: 1px solid var(--borde);
+}
+.alerta .icono svg { width: 22px; height: 22px; }
+.alerta.sev-baja  .icono { color: var(--ok); }
+.alerta.sev-media .icono { color: var(--alerta); }
+.alerta.sev-alta  .icono { color: var(--peligro); }
+
+.detalle { flex: 1; min-width: 0; }
+.tipo { font-weight: 700; font-size: 15.5px; }
+.ubicacion {
+  font-size: 12.5px;
+  color: var(--texto-suave);
+  margin-top: 3px;
+  line-height: 1.35;
+}
+.nivel {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  flex: none;
+}

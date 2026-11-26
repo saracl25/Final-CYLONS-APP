@@ -1,0 +1,93 @@
+:host { display: block; }
+
+.panel {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cabecera h2 { font-size: 22px; font-weight: 700; }
+
+/* ---------- Ruta activa ---------- */
+.ruta-activa {
+  background: var(--panel-2);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 16px;
+}
+.destino { font-size: 24px; font-weight: 700; line-height: 1.1; }
+.metricas {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  color: var(--cian);
+  font-size: 14px;
+}
+
+.instruccion {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--borde);
+}
+.paso { font-size: 10.5px; letter-spacing: .16em; color: var(--texto-suave); }
+.texto { font-size: 18px; font-weight: 700; margin: 6px 0 10px; line-height: 1.3; }
+.barra {
+  height: 6px;
+  background: #1c1d21;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.barra i {
+  display: block;
+  height: 100%;
+  background: var(--cian);
+  border-radius: 3px;
+  transition: width .4s ease;
+}
+
+.aviso-apagada { margin-top: 12px; color: var(--texto-suave); font-size: 14.5px; }
+
+/* ---------- Estado inactivo ---------- */
+.inactiva {
+  background: var(--panel-2);
+  border: 1px dashed var(--borde);
+  border-radius: 14px;
+  padding: 26px 18px;
+  text-align: center;
+  color: var(--texto-suave);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.inactiva svg { width: 34px; height: 34px; color: var(--cian); }
+.inactiva p { max-width: 34ch; line-height: 1.5; }
+.inactiva strong { color: var(--texto); }
+
+/* ---------- Acciones ---------- */
+.acciones { display: flex; flex-direction: column; gap: 10px; }
+
+/* ---------- Alertas ---------- */
+.subtitulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--borde);
+}
+
+@media (min-width: 520px) {
+  .acciones { flex-direction: row; }
+  .acciones .btn { flex: 1; }
+}

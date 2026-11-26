@@ -1,0 +1,49 @@
+@switch (estado()) {
+
+  @case ('cargando') {
+    <section class="estado card" role="status">
+      <span class="spinner" aria-hidden="true"></span>
+      <h2>Cargando ruta…</h2>
+    </section>
+  }
+
+  @case ('no-encontrado') {
+    <section class="estado card" role="alert">
+      <h2>Ruta no encontrada</h2>
+      <p>{{ mensaje() }}</p>
+      <a routerLink="/" class="btn btn-primario">Volver a las rutas</a>
+    </section>
+  }
+
+  @case ('error') {
+    <section class="estado estado-error card" role="alert">
+      <h2>No pudimos cargar la ruta</h2>
+      <p>{{ mensaje() }}</p>
+      <button type="button" class="btn btn-primario" (click)="cargar(id())">Reintentar</button>
+    </section>
+  }
+
+  @case ('ok') {
+    @if (ruta(); as r) {
+      <article class="card detalle" aria-labelledby="titulo-ruta">
+        <a routerLink="/" class="volver">← Volver a las rutas</a>
+
+        <header class="cabecera">
+          <h1 id="titulo-ruta">{{ r.nombreDestino }}</h1>
+          <span [class]="'badge acc-' + r.nivelAccesibilidad">{{ etiquetas[r.nivelAccesibilidad] }}</span>
+        </header>
+
+        <p class="metricas mono">
+          <span>{{ r.distanciaKm | number:'1.1-1' }} km</span>
+          <span>{{ r.tiempoEstimado }} min</span>
+        </p>
+
+        @if (r.descripcion) {
+          <p class="descripcion">{{ r.descripcion }}</p>
+        }
+
+        <button type="button" class="btn btn-primario" (click)="iniciarGuia(r)">Iniciar guía</button>
+      </article>
+    }
+  }
+}
